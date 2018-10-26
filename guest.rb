@@ -27,8 +27,8 @@ class Guest
   # end
 
   def react_to_song
-    return "My favourite song"
-  end 
+    return "my favourite song"
+  end
 
 
 end

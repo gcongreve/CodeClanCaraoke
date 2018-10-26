@@ -31,7 +31,7 @@ class GuestTest < MiniTest::Test
     assert_equal(@song, @guest2.fav_song)
   end
 
-  # def test_guest_react_to_favourite_song__fav_song
+  # def test_guest_react_to_song__fav_song
   #   expected = "I moderately enjoy this song"
   #   actual = @guest1.react_to_song(@song)
   #   assert_equal(expected, actual)

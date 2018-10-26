@@ -9,7 +9,7 @@ class Room
     @max_guests_in_room = 3
     @entry_fee = 5
     @till = 0
-    @currently_playing = songs.rand(songs.length)
+    @currently_playing = @playlist.sample
   end
 
   def room_has_space?
@@ -46,7 +46,7 @@ class Room
 
   def guest_reacts_to_playlist(guest)
     if @playlist.include?(guest.fav_song)
-      guest.react_to_song
+      return "They have #{guest.react_to_song}"
     end
   end
 
