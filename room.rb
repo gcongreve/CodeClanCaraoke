@@ -47,7 +47,7 @@ class Room
     if @songs_available.include?(guest.fav_song)
       guest.react_to_song
     end
-  end
+  end 
 
 
 
