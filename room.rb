@@ -7,6 +7,7 @@ class Room
     @songs_available = songs
     @guests_in_room = guests
     @max_guests_in_room = 3
+    @entry_fee = 5
   end
 
   def add_guest(guest)

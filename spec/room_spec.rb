@@ -12,10 +12,10 @@ class RoomTest < MiniTest::Test
     @song_c = Song.new("Captain")
     @songs = [@song_a, @song_b]
 
-    @guest_a = Guest.new("Alf")
-    @guest_b = Guest.new("Bert")
-    @guest_c = Guest.new("Charles")
-    @guest_d = Guest.new("Donald")
+    @guest_a = Guest.new("Alf", 10)
+    @guest_b = Guest.new("Bert", 10)
+    @guest_c = Guest.new("Charles", 10)
+    @guest_d = Guest.new("Donald", 10)
     @guests = [@guest_a, @guest_b]
 
     @room1 = Room.new("Caraoke Room 1", @songs)

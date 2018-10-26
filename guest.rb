@@ -12,5 +12,9 @@ class Guest
     return @cash_amount
   end
 
+  def pays_money(amount)
+    @cash_amount -= amount
+  end 
+
 
 end
