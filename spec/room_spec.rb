@@ -16,6 +16,7 @@ class RoomTest < MiniTest::Test
     @guest_b = Guest.new("Bert", 10)
     @guest_c = Guest.new("Charles", 10)
     @guest_d = Guest.new("Donald", 10)
+    @guest_e = Guest.new("Ernest", 4)
     @guests = [@guest_a, @guest_b]
 
     @room1 = Room.new("Caraoke Room 1", @songs)
@@ -58,5 +59,30 @@ class RoomTest < MiniTest::Test
     assert_equal(3, @room2.guests_in_room.length)
   end
 
+  def test_guest_can_afford_entry_fee__true
+    expected = true
+    actual = @room1.guest_can_afford?(@guest_a)
+    assert_equal(expected, actual)
+  end
+
+  def test_guest_can_afford_entry_fee__false
+    expected = false
+    actual = @room1.guest_can_afford?(@guest_e)
+    assert_equal(expected, actual)
+  end
+
+  def test_till_can_take_money
+    @room1.guest_pays(@guest_a)
+    assert_equal(5, @room1.show_till)
+  end
 
 end
+
+
+# def test_guest_pays_entry_fee__enough_money
+#
+# end
+#
+# def test_guest_pays_entry_fee__insufficient_money
+#
+# end
