@@ -12,6 +12,13 @@ class Room
     @guests_in_room.push(guest)
   end
 
+  def remove_guest(guest)
+    @guests_in_room.delete(guest)
+  end
+
+  def add_song(song)
+    @songs_available.push(song)
+  end
 
 
 
