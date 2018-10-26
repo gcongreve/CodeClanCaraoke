@@ -28,7 +28,7 @@ class RoomTest < MiniTest::Test
   end
 
   def test_room_has_songs
-    assert_equal(@songs, @room1.songs_available)
+    assert_equal(@songs, @room1.playlist)
   end
 
   def test_room_can_take_in_guest
@@ -48,7 +48,7 @@ class RoomTest < MiniTest::Test
   def test_room_can_take_additonal_songs
     expected = true
     @room1.add_song(@song_c)
-    actual = @room1.songs_available.include?(@song_c)
+    actual = @room1.playlist.include?(@song_c)
     assert_equal(expected, actual)
   end
 
@@ -87,9 +87,13 @@ class RoomTest < MiniTest::Test
   end
 
   def test_guest_reacts_to_song_on_playlist
-    expeced = "My favourite song"
-    actual = @room1.guest_reacts_to_song(@guest_a)
+    expeced = "They have my favourite song"
+    actual = @room1.guest_reacts_to_playlist(@guest_a)
     assert_equal(expeced, actual)
+  end
+
+  def test_currently_playing_song
+    #test to see if @currently playing works
   end
 
 

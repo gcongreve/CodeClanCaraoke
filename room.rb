@@ -1,14 +1,15 @@
 class Room
 
-  attr_reader :name, :songs_available, :guests_in_room
+  attr_reader :name, :playlist, :guests_in_room
 
   def initialize(name, songs = [], guests = [])
     @name = name
-    @songs_available = songs
+    @playlist = songs
     @guests_in_room = guests
     @max_guests_in_room = 3
     @entry_fee = 5
     @till = 0
+    @currently_playing = songs.rand(songs.length)
   end
 
   def room_has_space?
@@ -40,16 +41,20 @@ class Room
   end
 
   def add_song(song)
-    @songs_available.push(song)
+    @playlist.push(song)
   end
 
-  def guest_reacts_to_song(guest)
-    if @songs_available.include?(guest.fav_song)
+  def guest_reacts_to_playlist(guest)
+    if @playlist.include?(guest.fav_song)
       guest.react_to_song
     end
-  end 
+  end
 
-
+  # def guest_reacts_to_song(guest)
+  #   if @playlist.include?(guest.fav_song)
+  #     guest.react_to_song
+  #   end
+  # end
 
 
 
