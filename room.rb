@@ -50,11 +50,11 @@ class Room
     end
   end
 
-  # def guest_reacts_to_song(guest)
-  #   if @playlist.include?(guest.fav_song)
-  #     guest.react_to_song
-  #   end
-  # end
+  def guest_reacts_to_current_song(guest)
+    if @currently_playing == guest.fav_song
+      return "This is #{guest.react_to_song}"
+    end
+  end
 
 
 
