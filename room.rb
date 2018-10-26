@@ -30,6 +30,7 @@ class Room
 
   def add_guest(guest)
     if room_has_space? && guest_can_afford?(guest)
+      guest_pays(guest)
       @guests_in_room.push(guest)
     end
   end

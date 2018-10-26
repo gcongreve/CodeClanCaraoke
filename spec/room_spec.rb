@@ -76,13 +76,14 @@ class RoomTest < MiniTest::Test
     assert_equal(5, @room1.show_till)
   end
 
+  def test_guest_pays_entry_fee__enough_money
+    @room1.add_guest(@guest_a)
+    assert_equal(5, @room1.show_till)
+  end
+
+  def test_guest_pays_entry_fee__insufficient_money
+    @room1.add_guest(@guest_e)
+    assert_equal(0, @room1.show_till)
+  end
+
 end
-
-
-# def test_guest_pays_entry_fee__enough_money
-#
-# end
-#
-# def test_guest_pays_entry_fee__insufficient_money
-#
-# end
