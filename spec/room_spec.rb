@@ -14,8 +14,12 @@ class RoomTest < MiniTest::Test
 
     @guest_a = Guest.new("Alf")
     @guest_b = Guest.new("Bert")
+    @guest_c = Guest.new("Charles")
+    @guest_d = Guest.new("Donald")
+    @guests = [@guest_a, @guest_b]
 
     @room1 = Room.new("Caraoke Room 1", @songs)
+    @room2 = Room.new("Caraoke Room 2", @songs, @guests)
   end
 
   def test_room_has_name
@@ -42,8 +46,16 @@ class RoomTest < MiniTest::Test
 
   def test_room_can_take_additonal_songs
     expected = true
-    @room1.add_song(@song_2)
-    actual = @room1.songs_available.include?("Captain")
+    @room1.add_song(@song_c)
+    actual = @room1.songs_available.include?(@song_c)
+    assert_equal(expected, actual)
+  end
+
+  def test_maximum_room_capacity
+    @room2.add_guest(@guest_c)
+    assert_equal(3, @room2.guests_in_room.length)
+    @room2.add_guest(@guest_d)
+    assert_equal(3, @room2.guests_in_room.length)
   end
 
 

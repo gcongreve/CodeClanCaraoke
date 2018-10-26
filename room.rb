@@ -6,10 +6,13 @@ class Room
     @name = name
     @songs_available = songs
     @guests_in_room = guests
+    @max_guests_in_room = 3
   end
 
   def add_guest(guest)
-    @guests_in_room.push(guest)
+    if @guests_in_room.length < @max_guests_in_room
+      @guests_in_room.push(guest)
+    end
   end
 
   def remove_guest(guest)
