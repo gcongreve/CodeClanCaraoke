@@ -20,10 +20,14 @@ class Guest
     @fav_song = song
   end
 
-  def react_to_song(song)
-    if @fav_song == song
-      return "I moderately enjoy this song"
-    end
+  # def react_to_song(song)
+  #   if @fav_song == song
+  #     return "I moderately enjoy this song"
+  #   end
+  # end
+
+  def react_to_song
+    return "My favourite song"
   end
 
 

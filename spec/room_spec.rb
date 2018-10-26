@@ -12,7 +12,7 @@ class RoomTest < MiniTest::Test
     @song_c = Song.new("Captain")
     @songs = [@song_a, @song_b]
 
-    @guest_a = Guest.new("Alf", 10)
+    @guest_a = Guest.new("Alf", 10, @song_a)
     @guest_b = Guest.new("Bert", 10)
     @guest_c = Guest.new("Charles", 10)
     @guest_d = Guest.new("Donald", 10)
@@ -86,6 +86,12 @@ class RoomTest < MiniTest::Test
     assert_equal(0, @room1.show_till)
   end
 
-  
+  def test_guest_reacts_to_song_on_playlist
+    expeced = "My favourite song"
+    actual = @room1.guest_reacts_to_song(@guest_a)
+    assert_equal(expeced, actual)
+  end
+
+
 
 end

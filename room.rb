@@ -43,6 +43,13 @@ class Room
     @songs_available.push(song)
   end
 
+  def guest_reacts_to_song(guest)
+    if @songs_available.include?(guest.fav_song)
+      guest.react_to_song
+    end
+  end
+
+
 
 
 
