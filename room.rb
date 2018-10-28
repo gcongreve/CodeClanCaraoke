@@ -79,6 +79,10 @@ class Room
     end
   end
 
+  def guest_too_drunk?(guest)
+    @max_drunk_limit <= guest.drunk_test
+  end
+
 
 
 end

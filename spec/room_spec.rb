@@ -20,7 +20,7 @@ class RoomTest < MiniTest::Test
     @guest_a = Guest.new("Alf", 10, @song_a)
     @guest_b = Guest.new("Bert", 10)
     @guest_c = Guest.new("Charles", 10)
-    @guest_d = Guest.new("Donald", 10)
+    @guest_d = Guest.new("Donald", 100)
     @guest_e = Guest.new("Ernest", 4)
     @guests = [@guest_a, @guest_b]
 
@@ -121,7 +121,14 @@ class RoomTest < MiniTest::Test
     assert_equal(2.5, @guest_c.drunk_test)
   end
 
-  def test_guest_thrown_out_for_being_too_drunk
+  def test_guest_can_be_too_drunk
+    @room2.guest_enters_room(@guest_d)
+    @room2.guest_buys_drink(@guest_d, @vodka)
+    @room2.guest_buys_drink(@guest_d, @vodka)
+    @room2.guest_buys_drink(@guest_d, @rum)
+    actual = @room2.guest_too_drunk?(@guest_d)
+    assert_equal(true, actual)
+  end
 
 
 
