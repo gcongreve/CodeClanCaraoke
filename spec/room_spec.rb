@@ -93,7 +93,7 @@ class RoomTest < MiniTest::Test
   end
 
   def test_guest_reacts_to_currently_playing_song
-    expected = "This is my favourite song"
+    expected = ("This is my favourite song" 
     actual = @room1.guest_reacts_to_current_song(@guest_a)
     assert_equal(expected, actual)
   end
