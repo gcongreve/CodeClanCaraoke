@@ -17,11 +17,11 @@ class Room
     @guests_in_room.length < @max_guests_in_room
   end
 
-  def guest_can_afford?(guest)
+  def guest_afford_entry?(guest)
     @entry_fee < guest.show_money
   end
 
-  def guest_can_afford_drink?(guest, drink)
+  def guest_afford_drink?(guest, drink)
     drink.price < guest.show_money
   end
 
@@ -41,7 +41,7 @@ class Room
 
 
   def add_guest(guest)
-    if room_has_space? && guest_can_afford?(guest)
+    if room_has_space? && guest_afford_entry?(guest)
       guest_pays(guest)
       @guests_in_room.push(guest)
     end
@@ -68,7 +68,7 @@ class Room
   end
 
   def guest_buys_drink(guest, drink)
-    if guest_can_afford_drink?(guest, drink)
+    if guest_afford_drink?(guest, drink)
       guest_pays_drink(guest, drink)
       drink.pour_shot
       guest.drinks(drink)

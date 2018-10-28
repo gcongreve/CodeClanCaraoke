@@ -66,13 +66,13 @@ class RoomTest < MiniTest::Test
 
   def test_guest_can_afford_entry_fee__true
     expected = true
-    actual = @room1.guest_can_afford?(@guest_a)
+    actual = @room1.guest_afford_entry?(@guest_a)
     assert_equal(expected, actual)
   end
 
   def test_guest_can_afford_entry_fee__false
     expected = false
-    actual = @room1.guest_can_afford?(@guest_e)
+    actual = @room1.guest_afford_entry?(@guest_e)
     assert_equal(expected, actual)
   end
 
