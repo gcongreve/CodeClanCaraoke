@@ -103,7 +103,6 @@ class RoomTest < MiniTest::Test
     assert_equal(expected, actual)
   end
 
-
   def test_guest_can_buy_drink
     @room2.guest_buys_drink(@guest_a, @vodka)
     assert_equal(5, @room2.show_till)
@@ -128,6 +127,16 @@ class RoomTest < MiniTest::Test
     @room2.guest_buys_drink(@guest_d, @rum)
     actual = @room2.guest_too_drunk?(@guest_d)
     assert_equal(true, actual)
+  end
+
+  def test_guest_can_be_removed_for_being_too_drunk
+    @room2.guest_enters_room(@guest_d)
+    @room2.guest_buys_drink(@guest_d, @vodka)
+    @room2.guest_buys_drink(@guest_d, @vodka)
+    @room2.guest_buys_drink(@guest_d, @rum)
+    assert_equal(3, @room2.guests_in_room.count)
+    @room2.drunkard_removal
+    assert_equal(2, @room2.guests_in_room.count)
   end
 
 

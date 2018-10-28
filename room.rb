@@ -83,6 +83,13 @@ class Room
     @max_drunk_limit <= guest.drunk_test
   end
 
+  def drunkard_removal
+    @guests_in_room.each do |guest|
+      if guest_too_drunk?(guest)
+        remove_guest(guest)
+      end
+    end   
+  end
 
 
 end
