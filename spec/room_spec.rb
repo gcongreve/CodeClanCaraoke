@@ -107,6 +107,7 @@ class RoomTest < MiniTest::Test
     @room2.guest_buys_drink(@guest_a, @vodka)
     assert_equal(5, @room2.show_till)
     assert_equal(2.5, @guest_a.drunk_test)
+    assert_equal(1, @vodka.shots_in_bottle)
   end
 
   def test_guest_can_only_pay_for_entry_and_one_drink
@@ -138,7 +139,5 @@ class RoomTest < MiniTest::Test
     @room2.drunkard_removal
     assert_equal(2, @room2.guests_in_room.count)
   end
-
-
 
 end

@@ -1,6 +1,6 @@
 class Spirit
 
-  attr_reader :name, :price, :alcohol_units
+  attr_reader :name, :price, :alcohol_units, :shots_in_bottle
 
   def initialize(name, price_per_shot, alcohol_units_per_shot)
     @name = name
