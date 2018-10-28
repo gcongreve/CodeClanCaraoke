@@ -7,7 +7,7 @@ class Room
     @playlist = songs
     @guests_in_room = guests
     @max_guests_in_room = 3
-    @max_drunk_limit = 4
+    @max_drunk_limit = 5
     @entry_fee = 5
     @till = 0
     @currently_playing = @playlist.sample
@@ -18,11 +18,11 @@ class Room
   end
 
   def guest_afford_entry?(guest)
-    @entry_fee < guest.show_money
+    @entry_fee <= guest.show_money
   end
 
   def guest_afford_drink?(guest, drink)
-    drink.price < guest.show_money
+    drink.price <= guest.show_money
   end
 
   def show_till
@@ -70,10 +70,11 @@ class Room
     end
   end
 
+  #if guest can afford - a shot is poured as long as there are shots left.
   def guest_buys_drink(guest, drink)
     if guest_afford_drink?(guest, drink)
-      guest_pays_drink(guest, drink)
       drink.pour_shot
+      guest_pays_drink(guest, drink)
       guest.drinks(drink)
     end
   end
