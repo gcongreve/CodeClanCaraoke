@@ -22,6 +22,15 @@ class SpritTest < MiniTest::Test
     assert_equal(1, @spirit.shots_in_bottle)
   end
 
+  def test_spirit_stops_pouring_bottle_empty
+    @spirit.pour_shot
+    assert_equal(1, @spirit.shots_in_bottle)
+    @spirit.pour_shot
+    assert_equal(0, @spirit.shots_in_bottle)
+    @spirit.pour_shot
+    assert_equal(0, @spirit.shots_in_bottle)
+  end
+
 
 
 

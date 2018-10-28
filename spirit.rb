@@ -10,7 +10,9 @@ class Spirit
   end
 
   def pour_shot
-    @shots_in_bottle -= 1
+    if @shots_in_bottle > 0
+      @shots_in_bottle -= 1
+    end
   end
 
 end
