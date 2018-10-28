@@ -58,9 +58,9 @@ class RoomTest < MiniTest::Test
   end
 
   def test_maximum_room_capacity
-    @room2.add_guest(@guest_c)
+    @room2.guest_enters_room(@guest_c)
     assert_equal(3, @room2.guests_in_room.length)
-    @room2.add_guest(@guest_d)
+    @room2.guest_enters_room(@guest_d)
     assert_equal(3, @room2.guests_in_room.length)
   end
 
@@ -77,17 +77,17 @@ class RoomTest < MiniTest::Test
   end
 
   def test_till_can_take_money
-    @room1.guest_pays(@guest_a)
+    @room1.guest_pays_entry(@guest_a)
     assert_equal(5, @room1.show_till)
   end
 
   def test_guest_pays_entry_fee__enough_money
-    @room1.add_guest(@guest_a)
+    @room1.guest_enters_room(@guest_a)
     assert_equal(5, @room1.show_till)
   end
 
   def test_guest_pays_entry_fee__insufficient_money
-    @room1.add_guest(@guest_e)
+    @room1.guest_enters_room(@guest_e)
     assert_equal(0, @room1.show_till)
   end
 

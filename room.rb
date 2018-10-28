@@ -29,7 +29,7 @@ class Room
     return @till
   end
 
-  def guest_pays(guest)
+  def guest_pays_entry(guest)
     guest.pays_money(@entry_fee)
     @till += @entry_fee
   end
@@ -39,11 +39,14 @@ class Room
     @till += drink.price
   end
 
-
   def add_guest(guest)
+    @guests_in_room.push(guest)
+  end
+
+  def guest_enters_room(guest)
     if room_has_space? && guest_afford_entry?(guest)
-      guest_pays(guest)
-      @guests_in_room.push(guest)
+      guest_pays_entry(guest)
+      add_guest(guest)
     end
   end
 
