@@ -17,7 +17,12 @@ class SpritTest < MiniTest::Test
     assert_equal(2, @spirit.price)
   end
 
-  
+  def test_spirit_can_be_poured
+    @spirit.pour_shot
+    assert_equal(1, @spirit.shots_in_bottle)
+  end
+
+
 
 
 
