@@ -2,11 +2,12 @@ class Room
 
   attr_reader :name, :playlist, :guests_in_room
 
-  def initialize(name, songs = [], guests = [])
+  def initialize(name, songs = [], drinks = [], guests = [])
     @name = name
     @playlist = songs
     @guests_in_room = guests
     @max_guests_in_room = 3
+    @max_drunk_limit = 4
     @entry_fee = 5
     @till = 0
     @currently_playing = @playlist.sample
@@ -20,6 +21,10 @@ class Room
     @entry_fee < guest.show_money
   end
 
+  def guest_can_afford_drink?(guest, drink)
+    drink.price < guest.show_money
+  end
+
   def show_till
     return @till
   end
@@ -28,6 +33,12 @@ class Room
     guest.pays_money(@entry_fee)
     @till += @entry_fee
   end
+
+  def guest_pays_drink(guest, drink)
+    guest.pays_money(drink.price)
+    @till += drink.price
+  end
+
 
   def add_guest(guest)
     if room_has_space? && guest_can_afford?(guest)
@@ -53,6 +64,14 @@ class Room
   def guest_reacts_to_current_song(guest)
     if @currently_playing == guest.fav_song
       return "This is #{guest.react_to_song}"
+    end
+  end
+
+  def guest_buys_drink(guest, drink)
+    if guest_can_afford_drink?(guest, drink)
+      guest_pays_drink(guest, drink)
+      drink.pour_shot
+      guest.drinks(drink)
     end
   end
 

@@ -3,6 +3,7 @@ require('minitest/rg')
 require_relative('../room')
 require_relative('../guest')
 require_relative('../song')
+require_relative('../spirit')
 
 class RoomTest < MiniTest::Test
 
@@ -12,6 +13,10 @@ class RoomTest < MiniTest::Test
     @song_c = Song.new("Captain")
     @songs = [@song_a, @song_b]
 
+    @vodka = Spirit.new("Smirnoff", 5, 2.5)
+    @rum = Spirit.new("Morgans", 5, 2)
+    @drinks = [@vodka, @rum]
+
     @guest_a = Guest.new("Alf", 10, @song_a)
     @guest_b = Guest.new("Bert", 10)
     @guest_c = Guest.new("Charles", 10)
@@ -20,7 +25,7 @@ class RoomTest < MiniTest::Test
     @guests = [@guest_a, @guest_b]
 
     @room1 = Room.new("Caraoke Room 1", @songs)
-    @room2 = Room.new("Caraoke Room 2", @songs, @guests)
+    @room2 = Room.new("Caraoke Room 2", @songs, @drinks, @guests)
   end
 
   def test_room_has_name
@@ -93,9 +98,16 @@ class RoomTest < MiniTest::Test
   end
 
   def test_guest_reacts_to_currently_playing_song
-    expected = ("This is my favourite song" 
+    expected = ("This is my favourite song")
     actual = @room1.guest_reacts_to_current_song(@guest_a)
     assert_equal(expected, actual)
+  end
+
+
+  def test_guest_can_buy_drink
+    @room2.guest_buys_drink(@guest_a, @vodka)
+    assert_equal(5, @room2.show_till)
+    assert_equal(2.5, @guest_a.drunk_test)
   end
 
 
