@@ -6,6 +6,7 @@ class Guest
     @name = name
     @cash_amount = cash_amount
     @fav_song = fav_song
+    @drunk_level = 0
   end
 
   def show_money
@@ -20,15 +21,16 @@ class Guest
     @fav_song = song
   end
 
-  # def react_to_song(song)
-  #   if @fav_song == song
-  #     return "I moderately enjoy this song"
-  #   end
-  # end
-
   def react_to_song
     return "my favourite song"
   end
 
+  def drunk_test
+    return @drunk_level
+  end
+
+  def drinks(drink)
+    @drunk_level += drink.alcohol_units
+  end 
 
 end

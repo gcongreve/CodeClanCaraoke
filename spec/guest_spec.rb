@@ -2,10 +2,13 @@ require('minitest/autorun')
 require('minitest/rg')
 require_relative('../guest')
 require_relative('../song')
+require_relative('../spirit')
 
 class GuestTest < MiniTest::Test
 
   def setup
+    @whisky = Spirit.new("Teachers", 5, 2.5)
+
     @song = Song.new("Frog Chorus")
     @song2 = Song.new("Song 2")
 
@@ -31,11 +34,11 @@ class GuestTest < MiniTest::Test
     assert_equal(@song, @guest2.fav_song)
   end
 
-  # def test_guest_react_to_song__fav_song
-  #   expected = "I moderately enjoy this song"
-  #   actual = @guest1.react_to_song(@song)
-  #   assert_equal(expected, actual)
-  #end
+  def test_guest_can_drink_spirit
+    assert_equal(0, @guest2.drunk_test)
+    @guest2.drinks(@whisky)
+    assert_equal(2.5, @guest2.drunk_test)
+  end
 
 
 end
